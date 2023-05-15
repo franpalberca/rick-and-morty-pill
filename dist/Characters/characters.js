@@ -18,3 +18,4 @@ var Status;
     Status["Dead"] = "Dead";
     Status["Unknown"] = "unknown";
 })(Status = exports.Status || (exports.Status = {}));
+//# sourceMappingURL=characters.js.map

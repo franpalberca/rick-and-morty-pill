@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
     <script defer src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script defer src="./index.js"></script>
+    <script defer src="./dist/index.js"></script>
     <script defer src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <title>Rick and Morty Site</title>
 </head>
@@ -16,80 +16,75 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">RICK & MORTY</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExample03">
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" id="home-page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="characters">Characters</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active">Disabled</a>
+                    <a class="nav-link active" aria-current="page" id="characters" href="">Characters</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="true">Seasons</a>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Season 1</a></li>
-                    <li><a class="dropdown-item" href="#">Season 2</a></li>
-                    <li><a class="dropdown-item" href="#">Season 3</a></li>
-                    <li><a class="dropdown-item" href="#">Season 4</a></li>
-                    <li><a class="dropdown-item" href="#">Season 5</a></li>
+                    <li><a class="dropdown-item" id="season-one" href="#">Season 1</a></li>
+                    <li><a class="dropdown-item" id="season-two" href="#">Season 2</a></li>
+                    <li><a class="dropdown-item" id="season-three" href="#">Season 3</a></li>
+                    <li><a class="dropdown-item" id="season-four" href="#">Season 4</a></li>
+                    <li><a class="dropdown-item" id="season-five" href="#">Season 5</a></li>
                     </ul>
                 </li>
-                </ul>
-                <form role="search">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                </form>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="location" href="">Locations</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item dropdown ms-auto">
+                    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" aria-expanded="true" href="">Choose mode</a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Light mode</a></li>
+                    <li><a class="dropdown-item" href="#">Dark mode</a></li>
+                    </ul>
+                </li>
+            </ul>
             </div>
             </div>
         </nav>
     </header>
-    <main class="d-flex">
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px;">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li>
-                    <a href="#" class="nav-link text-white">
-                    <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                    Dashboard
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://elcomercio.pe/resizer/1Jof6GG7D5ikDvmymCn10G7TGZI=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/KRKOINCP7JGR7KWT4HNBDSJPDA.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+    <main class="main-container d-flex flex-grow-1">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px;">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li id="episodes-list">
+                        <!-- <a href="#" class="nav-link text-white">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        Dashboard
+                        </a> -->
+                    </li>
                 </ul>
+            </div>
+        </section>
+        <section class="d-flex flex-grow-1">
+            <div class="overlay" id="overlay"></div>
+            <div id="modal-whole fade"></div>
+            <div class="bg-image background-custom wallpaper">
+                <div class="album bg-body-terciary d-flex cards">
+                    <div id="show-characters" class="container box-container justify-content-end hidden">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 overflow-y-scroll" id="box-post">
+                        </div>
+                    </div>
                 </div>
             </div>
-    <section>
-        <div class="album py-5 bg-body-terciary">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3" id="box-post">
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
     </main>
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top bg-white">
+        <footer class="footer-container d-flex flex-wrap justify-content-between align-items-center py-3 border-top bg-dark border-top-0">
             <div class="container"></div>
                 <p class="col-md-4 mb-0 text-body-secondary">© Fran Pérez Alberca</p>
-
                 <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis">
                     <div id="date" class="bi me-2" width="40" height="32"></div>
                 </a>
-
                 <ul class="nav col-md-4 justify-content-end ">
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>

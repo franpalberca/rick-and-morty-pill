@@ -5,8 +5,8 @@ const urlCharacters = `${url}/character`;
 const urlLocations = `${url}/location`;
 const boxPost = document.querySelector("#box-post");
 const characterButton = document.querySelector("#characters");
+const homePage = document.querySelector("#home-page");
 characterButton === null || characterButton === void 0 ? void 0 : characterButton.addEventListener("click", function () {
-    return ;
     for (let i = 1; i < 42; i++) {
         fetch(`${urlCharacters}?page=${i}`)
             .then(element => element.json())
