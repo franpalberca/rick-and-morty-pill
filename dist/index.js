@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const loadCharacters_js_1 = require("./loadCharacters.js");
+import { loadCharacters } from './loadCharacters.js';
 const url = "https://rickandmortyapi.com/api/";
 const urlLocations = `${url}/location`;
 const boxPost = document.querySelector("#box-post");
@@ -10,7 +8,7 @@ const homePage = document.querySelector("#home-page");
 const urlEpisodes = `${url}/episode`;
 characterButton === null || characterButton === void 0 ? void 0 : characterButton.addEventListener("click", (event) => {
     event.preventDefault();
-    (0, loadCharacters_js_1.loadCharacters)();
+    loadCharacters();
     showCharacters === null || showCharacters === void 0 ? void 0 : showCharacters.classList.toggle("hidden");
 });
 const date = document.querySelector("#date");

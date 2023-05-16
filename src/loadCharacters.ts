@@ -1,13 +1,16 @@
+import { buildModal, closeModal } from './modal.js'
+const modalWhole = document.querySelector("#modal-whole") as HTMLElement
+const overlay = document.querySelector("#overlay") as HTMLElement
 const url: string = "https://rickandmortyapi.com/api/"
 const urlCharacters: string = `${url}/character`
-const boxPost: string = document.querySelector("#box-post")
+const boxPost = document.querySelector("#box-post") as HTMLElement
 
 export async function loadCharacters() {
     for (let i = 1; i < 42; i++) {
         try {
             const response = await fetch(`${urlCharacters}?page=${i}`)
             const data = await response.json()
-                data.results.forEach(element => {
+                data.results.forEach((element: {image:string, name:string, gender: string, status:string, species:string}) => {
                     const postBox = document.createElement("div")
                     postBox.setAttribute("class", "col")
                     postBox.setAttribute("class", "col")
@@ -60,7 +63,7 @@ export async function loadCharacters() {
                         overlay.style.display = "block";
                         modalWhole.style.display = "block";
                         boxPost.innerHTML = ""
-                        boxPost?.removeAttribute("class", "overflow-y-scroll")
+                        boxPost?.classList.remove("overflow-y-scroll")
                         buildModal(element.name, element.image, element.gender, element.status, element.species);
                         });
 

@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,21 +7,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildModal = exports.closeModal = void 0;
 const modalWhole = document.querySelector("#modal-whole");
 const overlay = document.querySelector("#overlay");
 const url = "https://rickandmortyapi.com/api/";
 const urlCharacters = `${url}/character`;
-function closeModal() {
+export function closeModal() {
     return new Promise((resolve, reject) => {
         modalWhole.style.display = "none";
         overlay.style.display = "none";
         resolve();
     });
 }
-exports.closeModal = closeModal;
-function buildModal(name, image, gender, status, species) {
+export function buildModal(image, name, gender, status, species) {
     return __awaiter(this, void 0, void 0, function* () {
         const modalTour = document.createElement("div");
         modalTour.setAttribute("class", "modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5");
@@ -80,6 +76,4 @@ function buildModal(name, image, gender, status, species) {
         modalButton.addEventListener("click", closeModal);
     });
 }
-exports.buildModal = buildModal;
-buildModal(name, image, gender, status, species).then(() => closeModal()).then(loadCharacters);
 //# sourceMappingURL=modal.js.map

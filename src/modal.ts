@@ -13,7 +13,7 @@ export function closeModal() {
 }
 
 
-export async function buildModal(name, image, gender, status, species) {
+export async function buildModal(image:string, name:string, gender: string, status:string, species:string) {
     // for (let i = 1; i < 3; i++) {
     // fetch(`${urlCharacters}?page=${i}`)
     // .then(element => element.json())
@@ -95,4 +95,4 @@ export async function buildModal(name, image, gender, status, species) {
 
 
 
-buildModal(name, image, gender, status, species).then(() => closeModal()).then(loadCharacters)
+// buildModal(name, image, gender, status, species).then(() => closeModal()).then(loadCharacters)

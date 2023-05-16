@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LocationType = void 0;
-var LocationType;
+export var LocationType;
 (function (LocationType) {
     LocationType["planet"] = "Planet";
     LocationType["Custom"] = "Custom";
@@ -16,5 +13,5 @@ var LocationType;
     LocationType["Microverse"] = "Microverse";
     LocationType["Menagerie"] = "Menagerie";
     LocationType["unknown"] = "Unknown";
-})(LocationType = exports.LocationType || (exports.LocationType = {}));
+})(LocationType || (LocationType = {}));
 //# sourceMappingURL=locations.js.map

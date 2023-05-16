@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,18 +7,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.loadCharacters = void 0;
+import { buildModal } from './modal.js';
+const modalWhole = document.querySelector("#modal-whole");
+const overlay = document.querySelector("#overlay");
 const url = "https://rickandmortyapi.com/api/";
 const urlCharacters = `${url}/character`;
 const boxPost = document.querySelector("#box-post");
-function loadCharacters() {
+export function loadCharacters() {
     return __awaiter(this, void 0, void 0, function* () {
         for (let i = 1; i < 42; i++) {
             try {
                 const response = yield fetch(`${urlCharacters}?page=${i}`);
                 const data = yield response.json();
-                data.results.forEach(element => {
+                data.results.forEach((element) => {
                     const postBox = document.createElement("div");
                     postBox.setAttribute("class", "col");
                     postBox.setAttribute("class", "col");
@@ -64,7 +64,7 @@ function loadCharacters() {
                         overlay.style.display = "block";
                         modalWhole.style.display = "block";
                         boxPost.innerHTML = "";
-                        boxPost === null || boxPost === void 0 ? void 0 : boxPost.removeAttribute("class", "overflow-y-scroll");
+                        boxPost === null || boxPost === void 0 ? void 0 : boxPost.classList.remove("overflow-y-scroll");
                         buildModal(element.name, element.image, element.gender, element.status, element.species);
                     });
                     const postBtnOneText = document.createElement("p");
@@ -80,5 +80,4 @@ function loadCharacters() {
         }
     });
 }
-exports.loadCharacters = loadCharacters;
 //# sourceMappingURL=loadCharacters.js.map

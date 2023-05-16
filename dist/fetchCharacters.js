@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,9 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchCharacter = void 0;
-function fetchCharacter(id) {
+export function fetchCharacter(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const response = yield fetch(`https://rickandmortyapi.com/api/character/${id}`);
@@ -24,5 +21,4 @@ function fetchCharacter(id) {
         }
     });
 }
-exports.fetchCharacter = fetchCharacter;
 //# sourceMappingURL=fetchCharacters.js.map
