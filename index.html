@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
     <script defer src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script defer src="./dist/index.js"></script>
+    <script defer src="./dist/index.js" type="module"></script>
     <script defer src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <title>Rick and Morty Site</title>
 </head>
@@ -41,35 +41,22 @@
                     <a class="nav-link active" aria-current="page" id="location" href="">Locations</a>
                 </li>
             </ul>
-            <ul>
-                <li class="nav-item dropdown ms-auto">
-                    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" aria-expanded="true" href="">Choose mode</a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Light mode</a></li>
-                    <li><a class="dropdown-item" href="#">Dark mode</a></li>
-                    </ul>
-                </li>
-            </ul>
             </div>
             </div>
         </nav>
     </header>
-    <main class="main-container d-flex flex-grow-1">
+    <main class="sidebar main-container d-flex flex-grow-1">
             <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px;">
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li id="episodes-list">
-                        <!-- <a href="#" class="nav-link text-white">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                        Dashboard
-                        </a> -->
                     </li>
                 </ul>
             </div>
         </section>
         <section class="d-flex flex-grow-1">
             <div class="overlay" id="overlay"></div>
-            <div id="modal-whole fade"></div>
             <div class="bg-image background-custom wallpaper">
+                <div id="modal-whole"></div>
                 <div class="album bg-body-terciary d-flex cards">
                     <div id="show-characters" class="container box-container justify-content-end hidden">
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 overflow-y-scroll" id="box-post">
