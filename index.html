@@ -38,7 +38,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" id="location" href="">Locations</a>
+                    <a class="nav-link active" aria-current="page" id="location-button" href="">Locations</a>
                 </li>
             </ul>
             </div>
@@ -46,9 +46,9 @@
         </nav>
     </header>
     <main class="sidebar main-container d-flex flex-grow-1">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 200px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark overflow-y-scroll" style="width: 200px;">
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li id="episodes-list">
+                    <li id="side-list">
                     </li>
                 </ul>
             </div>
@@ -58,7 +58,7 @@
             <div class="bg-image background-custom wallpaper">
                 <div id="modal-whole"></div>
                 <div class="album bg-body-terciary d-flex cards">
-                    <div id="show-characters" class="container box-container justify-content-end hidden">
+                    <div id="show-body" class="container box-container justify-content-end hidden">
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 overflow-y-scroll" id="box-post">
                         </div>
                     </div>
@@ -68,16 +68,16 @@
     </main>
         <footer class="footer-container d-flex flex-wrap justify-content-between align-items-center py-3 border-top bg-dark border-top-0">
             <div class="container"></div>
-                <p class="col-md-4 mb-0 text-body-secondary">© Fran Pérez Alberca</p>
+                <p class="col-md-4 mb-0 text-body-primary">© Fran Pérez Alberca</p>
                 <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis">
                     <div id="date" class="bi me-2" width="40" height="32"></div>
                 </a>
-                <ul class="nav col-md-4 justify-content-end ">
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                <ul class="footer-container nav col-md-4 justify-content-end ">
+                    <li class="nav-item"><a href="#" class="nav-link col-md-4 mb-0 px-2 text-body-primary">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">About</a></li>
                 </ul>
             </div>
         </footer>

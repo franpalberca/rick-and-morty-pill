@@ -12,14 +12,15 @@ const overlay = document.querySelector("#overlay");
 const url = "https://rickandmortyapi.com/api/";
 const urlCharacters = `${url}/character`;
 export function closeModal() {
-    return new Promise((resolve, reject) => {
-        modalWhole.style.display = "none";
-        overlay.style.display = "none";
-        resolve();
-    });
+    modalWhole.style.display = "none";
+    overlay.style.display = "none";
+    modalWhole.innerHTML = "";
 }
-export function buildModal(image, name, gender, status, species) {
+export function buildModal(id) {
     return __awaiter(this, void 0, void 0, function* () {
+        const urlCharacterId = `${urlCharacters}/${id}`;
+        const response = yield fetch(`${urlCharacterId}`);
+        const data = yield response.json();
         const modalTour = document.createElement("div");
         modalTour.setAttribute("class", "modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5");
         modalTour.setAttribute("tabindex", "-1");
@@ -46,26 +47,26 @@ export function buildModal(image, name, gender, status, species) {
         modalBody.appendChild(modalPicDiv);
         const modalPic = document.createElement("img");
         modalPic.setAttribute("class", "bd-placeholder-img justify-content-center");
-        modalPic.src = image;
+        modalPic.src = data.image;
         modalPicDiv.appendChild(modalPic);
         const modalTitle = document.createElement("h2");
         modalTitle.setAttribute("class", "fw-bold mb-0");
-        modalTitle.textContent = name;
+        modalTitle.textContent = data.name;
         modalBody.appendChild(modalTitle);
         const modalList = document.createElement("ul");
         modalList.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small");
         modalBody.appendChild(modalList);
         const modalListFirstElement = document.createElement("li");
         modalListFirstElement.setAttribute("class", "mb-0");
-        modalListFirstElement.innerText = gender;
+        modalListFirstElement.innerText = data.gender;
         modalList.appendChild(modalListFirstElement);
         const modalListSecondElement = document.createElement("li");
         modalListSecondElement.setAttribute("class", "mb-0");
-        modalListSecondElement.innerText = status;
+        modalListSecondElement.innerText = data.status;
         modalList.appendChild(modalListSecondElement);
         const modalListThirdElement = document.createElement("li");
         modalListThirdElement.setAttribute("class", "mb-0");
-        modalListThirdElement.innerText = species;
+        modalListThirdElement.innerText = data.species;
         modalList.appendChild(modalListThirdElement);
         const modalButton = document.createElement("button");
         modalButton.setAttribute("type", "button");

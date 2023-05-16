@@ -12,14 +12,14 @@ html {
     height: calc(100% - 120px);
     width: 100%;
 }
+
 .background-custom {
     height: 100%;
     width: 100%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-image: url("../images/r&m_wallpaper.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .box-container{
@@ -68,26 +68,6 @@ html {
 .modal {
     z-index: 10
 }
-
-/* .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 800px;
-    background-color: white;
-    z-index: 1000;
-    border-radius: 5px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: none;
-} */
-
-.modal-content {
-    /* max-height: 80vh; */
-    /* overflow-y: auto; */
-} 
 
 .close-button {
     position: absolute;
