@@ -15,14 +15,14 @@ export async function buildModal(id: number) {
     const data = await response.json();
 
     const modalTour = document.createElement("div");
-    modalTour.setAttribute("class", "modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5");
+    modalTour.setAttribute("class", "modal modal-sheet position-static d-block modal-bg p-4 py-md-5");
     modalTour.setAttribute("tabindex", "-1");
     modalTour.setAttribute("role", "dialog");
     modalTour.setAttribute("id", "modalTour");
     modalWhole?.appendChild(modalTour);
 
     const modalBase = document.createElement("div");
-    modalBase.setAttribute("class", "modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5");
+    modalBase.setAttribute("class", "modal modal-sheet position-static d-block modal-bg p-4 py-md-5");
     modalBase.setAttribute("tabindex", "-1");
     modalBase.setAttribute("role", "dialog");
     modalTour?.appendChild(modalBase);

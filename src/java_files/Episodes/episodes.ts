@@ -11,13 +11,13 @@ export interface Info {
 }
 
 export interface Result {
-    // created:   Date;
-    // dimension: string;
-    // id:        number;
+    created:   Date;
+    dimension: string;
+    id:        number;
     name:      string;
-    // residents: string[];
-    // type:      string;
-    // url:       string;
+    residents: string[];
+    type:      string;
+    url:       string;
     air_date: string;
     episode: string;
 }

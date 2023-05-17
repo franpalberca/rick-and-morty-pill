@@ -7,8 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { clearBoard } from './loadEpisodes.js';
 const url = "https://rickandmortyapi.com/api/";
-const urlLocations = `${url}/location`;
+const urlLocations = `${url}location`;
 const sideList = document.querySelector("#side-list");
 const boxPost = document.querySelector("#box-post");
 const showBody = document.querySelector("#show-body");
@@ -43,11 +44,11 @@ export function loadLocations() {
                 listLocations.innerText = location.name;
                 sideList === null || sideList === void 0 ? void 0 : sideList.appendChild(listLocations);
                 listLocations.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
-                    showBody === null || showBody === void 0 ? void 0 : showBody.classList.toggle("hidden");
+                    clearBoard();
+                    boxPost.classList.remove("row-cols-md-4");
+                    boxPost.classList.add("row-cols-md-1");
                     const locationBox = document.createElement("div");
                     locationBox.setAttribute("class", "col");
-                    boxPost.classList.remove("row-cols-md-6");
-                    boxPost.classList.add("row-cols-md-1");
                     boxPost.appendChild(locationBox);
                     const locationCard = document.createElement("div");
                     locationCard.setAttribute("class", "card shadow-sm card-location bg-card");

@@ -1,15 +1,16 @@
 import { buildModal } from './modal.js'
 import { Character } from './java_files/characters/characters.js'
+import { clearBoard } from './loadEpisodes.js'
+
 const modalWhole = document.querySelector("#modal-whole") as HTMLElement
 const overlay = document.querySelector("#overlay") as HTMLElement
 const url: string = "https://rickandmortyapi.com/api/"
-const urlCharacters: string = `${url}/character`
+const urlCharacters: string = `${url}character`
 const boxPost = document.querySelector("#box-post") as HTMLElement
-const showBody = document.querySelector("#show-body")
 
 export async function fetchCharacter(id: string): Promise<Character> {
     try {
-        const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+        const response = await fetch(`${urlCharacters}/${id}`);
         const data = await response.json();
 
         const { name, status, species, gender, origin, image, episode } = data;
@@ -39,10 +40,16 @@ export async function loadCharacters() {
 
         characterAll.forEach((element: {id: number, image:string, name:string, gender: string, status:string, species:string}) => {
 
-
+            boxPost.classList.remove("row-cols-md-1")
+            boxPost.classList.add("row-cols-md-4")
             const postBox = document.createElement("div")
-            postBox.setAttribute("class", "col")
+            postBox.classList.add("overflow-y-scroll")
+            postBox.setAttribute("class", "bg-white")
             boxPost.appendChild(postBox)
+
+            const postBoxSingle = document.createElement("div")
+            postBoxSingle.setAttribute("class", "col")
+            postBox.appendChild(postBoxSingle)
 
             const postCard = document.createElement("div")
             postCard.setAttribute("class", "card shadow-sm card-characters")
@@ -95,8 +102,7 @@ export async function loadCharacters() {
             postBtnOneText.setAttribute("data-bs-target", "#modalTour")
             postBtnOneText.textContent = "View"
             postBtnOne.appendChild(postBtnOneText)
-        })
-        // );
+        });
     } catch (error) {
         console.error(error)
     }

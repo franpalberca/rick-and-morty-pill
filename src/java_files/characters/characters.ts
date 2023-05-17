@@ -26,11 +26,6 @@ export enum CharacterGender {
     Unknown = "unknown",
 }
 
-// export interface CharacterLocation {
-//     name: string;
-//     url:  string;
-// }
-
 export enum CharacterSpecies {
     Alien = "Alien",
     Human = "Human",

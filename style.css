@@ -34,10 +34,6 @@ body {
     z-index: 10
 }
 
-.hidden {
-    display:none;
-}
-
 .overlay {
     position: fixed;
     top: 0;
@@ -67,7 +63,9 @@ body {
 }
 
 .modal-dialog{
-    top: -80px;
+    top: -100px;
+    height: 80vh;
+    width: 45vh;
 }
 
 .modal-card {
@@ -101,7 +99,7 @@ body {
 .modal-bg{
     position:relative;
     left: 0vh;
-    background-color: transparent !important;
+    background-color: transparent;
 }
 
 .grid-custom {
@@ -114,7 +112,11 @@ body {
 }
 
 /*esto de momento*/
-.bg-card {
+/* .bg-card {
+    background-color: transparent;
+} */
+
+.modal-bg{
     background-color: transparent;
 }
 

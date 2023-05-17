@@ -11,13 +11,12 @@ import { buildModal } from './modal.js';
 const modalWhole = document.querySelector("#modal-whole");
 const overlay = document.querySelector("#overlay");
 const url = "https://rickandmortyapi.com/api/";
-const urlCharacters = `${url}/character`;
+const urlCharacters = `${url}character`;
 const boxPost = document.querySelector("#box-post");
-const showBody = document.querySelector("#show-body");
 export function fetchCharacter(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const response = yield fetch(`https://rickandmortyapi.com/api/character/${id}`);
+            const response = yield fetch(`${urlCharacters}/${id}`);
             const data = yield response.json();
             const { name, status, species, gender, origin, image, episode } = data;
             return { name, status, species, gender, origin, image, episode };
@@ -42,9 +41,15 @@ export function loadCharacters() {
             const responses = yield Promise.all(requests);
             const characterAll = responses.reduce((acc, response) => [...acc, ...response.results], []);
             characterAll.forEach((element) => {
+                boxPost.classList.remove("row-cols-md-1");
+                boxPost.classList.add("row-cols-md-4");
                 const postBox = document.createElement("div");
-                postBox.setAttribute("class", "col");
+                postBox.classList.add("overflow-y-scroll");
+                postBox.setAttribute("class", "bg-white");
                 boxPost.appendChild(postBox);
+                const postBoxSingle = document.createElement("div");
+                postBoxSingle.setAttribute("class", "col");
+                postBox.appendChild(postBoxSingle);
                 const postCard = document.createElement("div");
                 postCard.setAttribute("class", "card shadow-sm card-characters");
                 postCard.setAttribute("height", "100%");

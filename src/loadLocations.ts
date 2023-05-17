@@ -1,7 +1,8 @@
 import { Location, LocationType } from './java_files/Locations/locations.js'
+import { clearBoard } from './loadEpisodes.js';
 
 const url: string = "https://rickandmortyapi.com/api/"
-const urlLocations: string = `${url}/location`
+const urlLocations: string = `${url}location`
 const sideList = document.querySelector("#side-list") as HTMLElement;
 const boxPost = document.querySelector("#box-post") as HTMLElement
 const showBody = document.querySelector("#show-body")
@@ -39,11 +40,11 @@ export async function loadLocations() {
 
             listLocations.addEventListener("click", async () => {
 
-                showBody?.classList.toggle("hidden")
+                clearBoard()
+                boxPost.classList.remove("row-cols-md-4")
+                boxPost.classList.add("row-cols-md-1")
                 const locationBox = document.createElement("div");
                 locationBox.setAttribute("class", "col");
-                boxPost.classList.remove("row-cols-md-6")
-                boxPost.classList.add("row-cols-md-1")
                 boxPost.appendChild(locationBox);
 
                 const locationCard = document.createElement("div");

@@ -22,13 +22,13 @@ export function buildModal(id) {
         const response = yield fetch(`${urlCharacterId}`);
         const data = yield response.json();
         const modalTour = document.createElement("div");
-        modalTour.setAttribute("class", "modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5");
+        modalTour.setAttribute("class", "modal modal-sheet position-static d-block modal-bg p-4 py-md-5");
         modalTour.setAttribute("tabindex", "-1");
         modalTour.setAttribute("role", "dialog");
         modalTour.setAttribute("id", "modalTour");
         modalWhole === null || modalWhole === void 0 ? void 0 : modalWhole.appendChild(modalTour);
         const modalBase = document.createElement("div");
-        modalBase.setAttribute("class", "modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5");
+        modalBase.setAttribute("class", "modal modal-sheet position-static d-block modal-bg p-4 py-md-5");
         modalBase.setAttribute("tabindex", "-1");
         modalBase.setAttribute("role", "dialog");
         modalTour === null || modalTour === void 0 ? void 0 : modalTour.appendChild(modalBase);

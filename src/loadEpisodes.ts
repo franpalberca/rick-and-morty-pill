@@ -2,14 +2,12 @@ import { Result } from './java_files/Episodes/episodes.js';
 
 const sideList = document.querySelector("#side-list") as HTMLElement;
 const url: string = "https://rickandmortyapi.com/api/"
-const urlEpisodes: string = `${url}/episode`
+const urlEpisodes: string = `${url}episode`
 const boxPost = document.querySelector("#box-post") as HTMLElement
-const showBody = document.querySelector("#show-body")
-
 
 export async function fetchEpisodes(id: string): Promise<Result> {
     try {
-        const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+        const response = await fetch(`${urlEpisodes}/${id}`);
         const data = await response.json();
 
         const { name, air_date, episode } = data;
@@ -29,9 +27,16 @@ export async function fetchEpisodes(id: string): Promise<Result> {
         }
     }
 
-export function loadEpisodes(start: number, end: number) {
+export function clearBoard() {
+    boxPost.innerHTML = ""
+    boxPost?.classList.remove("overflow-y-scroll")
+}
 
-    sideList.innerText = '';
+export function removeSidelist {
+    sideList.innerHTML = ""
+}
+
+export function loadEpisodes(start: number, end: number) {
 
     for (let i = start; i <= end; i++) {
         fetchEpisodes(i)
@@ -41,12 +46,12 @@ export function loadEpisodes(start: number, end: number) {
                 listEpisodes.innerText = dataEpisode["episode"] +" - " + dataEpisode["name"];
                 sideList?.appendChild(listEpisodes);
                 listEpisodes.addEventListener("click", () => {
+                    clearBoard()
 
-                    showBody?.classList.toggle("hidden")
+                    boxPost.classList.remove("row-cols-md-4")
+                    boxPost.classList.add("row-cols-md-1")
                     const episodeBox = document.createElement("div")
                     episodeBox.setAttribute("class", "col-9")
-                    boxPost.classList.remove("row-cols-md-6")
-                    boxPost.classList.add("row-cols-md-1")
                     boxPost.appendChild(episodeBox)
 
                     const episodeCard = document.createElement("div")
@@ -108,10 +113,6 @@ export function loadEpisodes(start: number, end: number) {
     }
 
 
-export function clearBoard() {
-    boxPost.innerHTML = ""
-    boxPost?.classList.remove("overflow-y-scroll")
-}
 
 
 

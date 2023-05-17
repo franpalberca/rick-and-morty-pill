@@ -9,13 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const sideList = document.querySelector("#side-list");
 const url = "https://rickandmortyapi.com/api/";
-const urlEpisodes = `${url}/episode`;
+const urlEpisodes = `${url}episode`;
 const boxPost = document.querySelector("#box-post");
-const showBody = document.querySelector("#show-body");
 export function fetchEpisodes(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const response = yield fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+            const response = yield fetch(`${urlEpisodes}/${id}`);
             const data = yield response.json();
             const { name, air_date, episode } = data;
             const characters = data.characters;
@@ -33,8 +32,14 @@ export function fetchEpisodes(id) {
         }
     });
 }
+export function clearBoard() {
+    boxPost.innerHTML = "";
+    boxPost === null || boxPost === void 0 ? void 0 : boxPost.classList.remove("overflow-y-scroll");
+}
+export function removeSidelist() {
+    sideList.innerHTML = "";
+}
 export function loadEpisodes(start, end) {
-    sideList.innerText = '';
     for (let i = start; i <= end; i++) {
         fetchEpisodes(i)
             .then((dataEpisode) => {
@@ -43,11 +48,11 @@ export function loadEpisodes(start, end) {
             listEpisodes.innerText = dataEpisode["episode"] + " - " + dataEpisode["name"];
             sideList === null || sideList === void 0 ? void 0 : sideList.appendChild(listEpisodes);
             listEpisodes.addEventListener("click", () => {
-                showBody === null || showBody === void 0 ? void 0 : showBody.classList.toggle("hidden");
+                clearBoard();
+                boxPost.classList.remove("row-cols-md-4");
+                boxPost.classList.add("row-cols-md-1");
                 const episodeBox = document.createElement("div");
                 episodeBox.setAttribute("class", "col-9");
-                boxPost.classList.remove("row-cols-md-6");
-                boxPost.classList.add("row-cols-md-1");
                 boxPost.appendChild(episodeBox);
                 const episodeCard = document.createElement("div");
                 episodeCard.setAttribute("class", "card shadow-sm");
@@ -95,9 +100,5 @@ export function loadEpisodes(start, end) {
         });
     }
     ;
-}
-export function clearBoard() {
-    boxPost.innerHTML = "";
-    boxPost === null || boxPost === void 0 ? void 0 : boxPost.classList.remove("overflow-y-scroll");
 }
 //# sourceMappingURL=loadEpisodes.js.map
