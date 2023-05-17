@@ -39,15 +39,15 @@ export function loadEpisodes(start, end) {
         fetchEpisodes(i)
             .then((dataEpisode) => {
             const listEpisodes = document.createElement("li");
-            listEpisodes.setAttribute("class", "episode");
+            listEpisodes.setAttribute("class", "pointer");
             listEpisodes.innerText = dataEpisode["episode"] + " - " + dataEpisode["name"];
             sideList === null || sideList === void 0 ? void 0 : sideList.appendChild(listEpisodes);
             listEpisodes.addEventListener("click", () => {
                 showBody === null || showBody === void 0 ? void 0 : showBody.classList.toggle("hidden");
                 const episodeBox = document.createElement("div");
                 episodeBox.setAttribute("class", "col-9");
-                episodeBox.style.maxWidth = "calc(100% - 300px)";
-                episodeBox.style.margin = "0 150px";
+                boxPost.classList.remove("row-cols-md-6");
+                boxPost.classList.add("row-cols-md-1");
                 boxPost.appendChild(episodeBox);
                 const episodeCard = document.createElement("div");
                 episodeCard.setAttribute("class", "card shadow-sm");
@@ -55,14 +55,14 @@ export function loadEpisodes(start, end) {
                 episodeCard.setAttribute("height", "100");
                 episodeBox.appendChild(episodeCard);
                 const episodeBody = document.createElement("div");
-                episodeBody.setAttribute("class", "card-body");
+                episodeBody.setAttribute("class", "card-body card-screen d-grid grid-custom");
                 episodeCard.appendChild(episodeBody);
                 const episodeTitle = document.createElement("h3");
-                episodeTitle.setAttribute("class", "card-text");
+                episodeTitle.setAttribute("class", "card-text row-1");
                 episodeTitle.textContent = dataEpisode["name"];
                 episodeBody.appendChild(episodeTitle);
                 const episodeUl = document.createElement("ul");
-                episodeUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small");
+                episodeUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small row-2");
                 episodeBody.appendChild(episodeUl);
                 const episodeLiOne = document.createElement("li");
                 episodeLiOne.setAttribute("class", "mb-0");
@@ -72,27 +72,29 @@ export function loadEpisodes(start, end) {
                 episodeLiTwo.setAttribute("class", "mb-0");
                 episodeLiTwo.innerText = dataEpisode["episode"];
                 episodeUl.appendChild(episodeLiTwo);
-                const episodeLiThree = document.createElement("li");
+                const episodeLiThree = document.createElement("h5");
                 episodeLiThree.setAttribute("class", "mb-0");
-                episodeLiThree.appendChild(document.createTextNode("Characters: "));
+                episodeLiThree.appendChild(document.createTextNode("CHARACTERS: "));
                 episodeUl.appendChild(episodeLiThree);
                 const charactersList = document.createElement("ul");
-                charactersList.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small");
+                charactersList.setAttribute("class", "row row-cols-4 gap-5 my-5 d-flex justify-content-center");
                 episodeLiThree.appendChild(charactersList);
                 dataEpisode["characters"].forEach((character) => {
-                    const characterLi = document.createElement("li");
-                    characterLi.setAttribute("class", "mb-0");
-                    charactersList.appendChild(characterLi);
+                    const characterDiv = document.createElement("div");
+                    characterDiv.setAttribute("class", "col-md-3 row-3");
+                    charactersList.appendChild(characterDiv);
                     const characterImg = document.createElement("img");
+                    characterImg.setAttribute("class", "img-fluid rounded");
                     characterImg.src = character.image;
-                    characterLi.appendChild(characterImg);
+                    characterDiv.appendChild(characterImg);
                     const characterName = document.createElement("span");
                     characterName.innerText = character.name;
-                    characterLi.appendChild(characterName);
+                    characterDiv.appendChild(characterName);
                 });
             });
         });
     }
+    ;
 }
 export function clearBoard() {
     boxPost.innerHTML = "";

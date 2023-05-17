@@ -15,7 +15,7 @@ const showBody = document.querySelector("#show-body");
 export function fetchLocationData(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const response = yield fetch(`https://rickandmortyapi.com/api/location/${id}`);
+            const response = yield fetch(`${urlLocations}/${id}`);
             const data = yield response.json();
             const { name, type, dimension, residents } = data;
             const location = {
@@ -39,28 +39,28 @@ export function loadLocations() {
             try {
                 const location = yield fetchLocationData(`${i}`);
                 const listLocations = document.createElement("li");
-                listLocations.setAttribute("class", "episode");
+                listLocations.setAttribute("class", "episode pointer");
                 listLocations.innerText = location.name;
                 sideList === null || sideList === void 0 ? void 0 : sideList.appendChild(listLocations);
-                listLocations.addEventListener("click", () => {
+                listLocations.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
                     showBody === null || showBody === void 0 ? void 0 : showBody.classList.toggle("hidden");
                     const locationBox = document.createElement("div");
                     locationBox.setAttribute("class", "col");
+                    boxPost.classList.remove("row-cols-md-6");
+                    boxPost.classList.add("row-cols-md-1");
                     boxPost.appendChild(locationBox);
                     const locationCard = document.createElement("div");
-                    locationCard.setAttribute("class", "card shadow-sm");
-                    locationCard.setAttribute("width", "100");
-                    locationCard.setAttribute("height", "100");
+                    locationCard.setAttribute("class", "card shadow-sm card-location bg-card");
                     locationBox.appendChild(locationCard);
                     const locationBody = document.createElement("div");
-                    locationBody.setAttribute("class", "card-body");
+                    locationBody.setAttribute("class", "card-body d-grid grid-custom");
                     locationCard.appendChild(locationBody);
                     const locationTitle = document.createElement("h3");
-                    locationTitle.setAttribute("class", "card-text");
+                    locationTitle.setAttribute("class", "card-text row-1");
                     locationTitle.textContent = location.name;
                     locationBody.appendChild(locationTitle);
                     const locationUl = document.createElement("ul");
-                    locationUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small");
+                    locationUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small row-2");
                     locationBody.appendChild(locationUl);
                     const locationLiOne = document.createElement("li");
                     locationLiOne.setAttribute("class", "mb-0");
@@ -70,11 +70,31 @@ export function loadLocations() {
                     locationLiTwo.setAttribute("class", "mb-0");
                     locationLiTwo.innerText = "Dimension: " + location.dimension;
                     locationUl.appendChild(locationLiTwo);
-                    const locationLiThree = document.createElement("li");
+                    const locationLiThree = document.createElement("h5");
                     locationLiThree.setAttribute("class", "mb-0");
-                    locationLiThree.innerText = "Residents: " + location.residents;
+                    locationLiThree.appendChild(document.createTextNode("RESIDENTS: "));
                     locationUl.appendChild(locationLiThree);
-                });
+                    const residentBox = document.createElement("div");
+                    residentBox.setAttribute("class", "row row-cols-4 gap-5 my-5 justify-content-center");
+                    locationBody.appendChild(residentBox);
+                    const residentsList = yield Promise.all(location.residents.map((urlResident) => __awaiter(this, void 0, void 0, function* () {
+                        const response = yield fetch(urlResident);
+                        const data = yield response.json();
+                        return data;
+                    })));
+                    residentsList.forEach((resident) => {
+                        const residentDiv = document.createElement("div");
+                        residentDiv.setAttribute("class", "col mb-4");
+                        residentBox.appendChild(residentDiv);
+                        const residentImg = document.createElement("img");
+                        residentImg.setAttribute("class", "img-fluid rounded");
+                        residentImg.src = resident.image;
+                        residentDiv.appendChild(residentImg);
+                        const residentName = document.createElement("h5");
+                        residentName.innerText = resident.name;
+                        residentDiv.appendChild(residentName);
+                    });
+                }));
             }
             catch (error) {
                 console.error(error);

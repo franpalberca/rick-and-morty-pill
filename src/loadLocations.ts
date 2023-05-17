@@ -8,7 +8,7 @@ const showBody = document.querySelector("#show-body")
 
 export async function fetchLocationData(id: string): Promise<Location>{
     try {
-        const response = await fetch(`https://rickandmortyapi.com/api/location/${id}`);
+        const response = await fetch(`${urlLocations}/${id}`);
         const data = await response.json();
         const { name , type , dimension , residents } = data;
 
@@ -33,33 +33,34 @@ export async function loadLocations() {
             const location = await fetchLocationData(`${i}`);
 
             const listLocations = document.createElement("li");
-            listLocations.setAttribute("class", "episode");
+            listLocations.setAttribute("class", "episode pointer");
             listLocations.innerText = location.name;
             sideList?.appendChild(listLocations);
 
-            listLocations.addEventListener("click", () => {
+            listLocations.addEventListener("click", async () => {
+
                 showBody?.classList.toggle("hidden")
                 const locationBox = document.createElement("div");
                 locationBox.setAttribute("class", "col");
+                boxPost.classList.remove("row-cols-md-6")
+                boxPost.classList.add("row-cols-md-1")
                 boxPost.appendChild(locationBox);
 
                 const locationCard = document.createElement("div");
-                locationCard.setAttribute("class", "card shadow-sm");
-                locationCard.setAttribute("width", "100");
-                locationCard.setAttribute("height", "100");
+                locationCard.setAttribute("class", "card shadow-sm card-location bg-card");
                 locationBox.appendChild(locationCard);
 
                 const locationBody = document.createElement("div");
-                locationBody.setAttribute("class", "card-body");
+                locationBody.setAttribute("class", "card-body d-grid grid-custom");
                 locationCard.appendChild(locationBody);
 
                 const locationTitle = document.createElement("h3");
-                locationTitle.setAttribute("class", "card-text");
+                locationTitle.setAttribute("class", "card-text row-1");
                 locationTitle.textContent = location.name;
                 locationBody.appendChild(locationTitle);
 
                 const locationUl = document.createElement("ul");
-                locationUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small");
+                locationUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small row-2");
                 locationBody.appendChild(locationUl);
 
                 const locationLiOne = document.createElement("li");
@@ -72,74 +73,39 @@ export async function loadLocations() {
                 locationLiTwo.innerText = "Dimension: " + location.dimension;
                 locationUl.appendChild(locationLiTwo);
 
-                const locationLiThree = document.createElement("li");
+                const locationLiThree = document.createElement("h5");
                 locationLiThree.setAttribute("class", "mb-0");
-                locationLiThree.innerText = "Residents: " + location.residents;
+                locationLiThree.appendChild(document.createTextNode("RESIDENTS: "));
                 locationUl.appendChild(locationLiThree);
-                });
-        } catch (error) {
-        console.error(error);
-        }
+
+                const residentBox = document.createElement("div")
+                residentBox.setAttribute("class", "row row-cols-4 gap-5 my-5 justify-content-center")
+                locationBody.appendChild(residentBox)
+
+                const residentsList = await Promise.all(location.residents.map(async (urlResident) => {
+                    const response = await fetch(urlResident);
+                    const data = await response.json();
+                    return data;
+                    }));
+                    residentsList.forEach((resident) => {
+
+                        const residentDiv = document.createElement("div");
+                        residentDiv.setAttribute("class", "col mb-4");
+                        residentBox.appendChild(residentDiv);
+
+                        const residentImg = document.createElement("img");
+                        residentImg.setAttribute("class", "img-fluid rounded");
+                        residentImg.src = resident.image;
+                        residentDiv.appendChild(residentImg);
+
+                        const residentName = document.createElement("h5");
+                        residentName.innerText = resident.name;
+                        residentDiv.appendChild(residentName);
+                    });
+                })
+            } catch (error) {
+                console.error(error);
+            }
     }
 }
-// export function loadLocations() {
-
-//     sideList.innerText = '';
-
-//     for (let i = 1; i <= 126; i++) {
-//         fetch(`${urlLocations}/${i}`)
-//             .then((response) => response.json())
-//             .then((data) => {
-//                 const listLocations = document.createElement("li");
-//                 listLocations.setAttribute("class", "episode")
-//                 listLocations.innerText = data["name"];
-//                 sideList?.appendChild(listLocations);
-//                 console.log(listLocations)
-//                 listLocations.addEventListener("click", () => {
-//                     const locationBox = document.createElement("div")
-//                     locationBox.setAttribute("class", "col")
-//                     boxPost.appendChild(locationBox)
-
-//                     const locationCard = document.createElement("div")
-//                     locationCard.setAttribute("class", "card shadow-sm")
-//                     locationCard.setAttribute("width", "100")
-//                     locationCard.setAttribute("height", "100")
-//                     locationBox.appendChild(locationCard)
-
-//                     const locationBody = document.createElement("div")
-//                     locationBody.setAttribute("class", "card-body")
-//                     locationCard.appendChild(locationBody)
-
-//                     const locationTitle = document.createElement("h3")
-//                     locationTitle.setAttribute("class", "card-text")
-//                     locationTitle.textContent = data["name"]
-//                     locationBody.appendChild(locationTitle)
-
-//                     const locationUl = document.createElement("ul")
-//                     locationUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small")
-//                     locationBody.appendChild(locationUl)
-
-//                     const locationLiOne = document.createElement("li")
-//                     locationLiOne.setAttribute("class", "mb-0")
-//                     locationLiOne.innerText = "Aired on " + data["air_date"]
-//                     locationUl.appendChild(locationLiOne)
-
-//                     const locationLiTwo = document.createElement("li")
-//                     locationLiTwo.setAttribute("class", "mb-0")
-//                     locationLiTwo.innerText = data["episode"]
-//                     locationUl.appendChild(locationLiTwo)
-
-//                     const locationLiThree = document.createElement("li")
-//                     locationLiThree.setAttribute("class", "mb-0")
-//                     locationLiThree.innerText = data["characters"]
-//                     locationUl.appendChild(locationLiThree)
-
-//                     const characterImg = document.createElement("img");
-//                     characterImg.src = data["characters"]["image"];
-//                     locationLiThree.appendChild(characterImg)
-//                 })
-
-//             });
-//     }
-// }
 

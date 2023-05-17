@@ -1,5 +1,3 @@
-// import { fetchCharacter } from "./loadCharacters.js";
-
 const modalWhole = document.querySelector("#modal-whole") as HTMLElement;
 const overlay = document.querySelector("#overlay") as HTMLElement;
 const url: string = "https://rickandmortyapi.com/api/";
@@ -35,7 +33,7 @@ export async function buildModal(id: number) {
     modalBase.appendChild(modalDialog);
 
     const modalContent = document.createElement("div");
-    modalContent.setAttribute("class", "modal-content rounded-4 shadow");
+    modalContent.setAttribute("class", "modal-content rounded-4 shadow modal-card");
     modalDialog.appendChild(modalContent);
 
     const modalBody = document.createElement("div");
@@ -43,11 +41,11 @@ export async function buildModal(id: number) {
     modalContent.appendChild(modalBody);
 
     const modalPicDiv = document.createElement("div");
-    modalPicDiv.setAttribute("class", "col-auto d-lg-block d-flex");
+    modalPicDiv.setAttribute("class", "col-auto d-lg-block d-flex justify-content-center");
     modalBody.appendChild(modalPicDiv);
 
     const modalPic = document.createElement("img");
-    modalPic.setAttribute("class", "bd-placeholder-img justify-content-center");
+    modalPic.setAttribute("class", "img-fluid rounded mx-auto my-3");
     modalPic.src = data.image;
     modalPicDiv.appendChild(modalPic);
 
@@ -62,17 +60,17 @@ export async function buildModal(id: number) {
 
     const modalListFirstElement = document.createElement("li");
     modalListFirstElement.setAttribute("class", "mb-0");
-    modalListFirstElement.innerText = data.gender;
+    modalListFirstElement.innerText = "Gender: " + data.gender;
     modalList.appendChild(modalListFirstElement);
 
     const modalListSecondElement = document.createElement("li")
     modalListSecondElement.setAttribute("class", "mb-0")
-    modalListSecondElement.innerText = data.status
+    modalListSecondElement.innerText = "Status: " + data.status
     modalList.appendChild(modalListSecondElement)
 
     const modalListThirdElement = document.createElement("li")
     modalListThirdElement.setAttribute("class", "mb-0")
-    modalListThirdElement.innerText = data.species
+    modalListThirdElement.innerText = "Specie: " + data.species
     modalList.appendChild(modalListThirdElement)
 
     const modalButton = document.createElement("button")
@@ -84,8 +82,3 @@ export async function buildModal(id: number) {
     modalButton.addEventListener("click", closeModal)
     }
 
-
-
-
-
-// buildModal(name, image, gender, status, species).then(() => closeModal()).then(loadCharacters)

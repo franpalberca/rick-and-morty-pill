@@ -1,6 +1,5 @@
-html {
-    height: 100vh;
-    width: 100;
+body {
+    overflow: hidden;
 }
 
 .bg-image {
@@ -14,10 +13,9 @@ html {
 }
 
 .background-custom {
-    height: 100%;
+    height: 86vh;
     width: 100%;
     background-size: cover;
-    background-repeat: no-repeat;
     background-image: url("../images/r&m_wallpaper.jpg");
     background-repeat: no-repeat;
 }
@@ -37,7 +35,7 @@ html {
 }
 
 .hidden {
-    display:none
+    display:none;
 }
 
 .overlay {
@@ -47,9 +45,12 @@ html {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: 0;
+    z-index: 100;
     display: none;
-    background-image: url("../images/r&m_wallpaper.jpg")
+}
+
+.pointer {
+    cursor:pointer;
 }
 
 .navbar {
@@ -57,7 +58,7 @@ html {
     z-index: 10
 }
 
-.footer-container p {
+.footer-container p, .date-footer {
     color: rgb(152, 214, 36);
 }
 
@@ -65,8 +66,12 @@ html {
     border-top: 0;
 }
 
-.modal {
-    z-index: 10
+.modal-dialog{
+    top: -80px;
+}
+
+.modal-card {
+    z-index: 110;
 }
 
 .close-button {
@@ -78,3 +83,38 @@ html {
     color: #aaa;
     cursor: pointer;
 }
+
+.card-screen, .card-location {
+    height: 85vh;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    background-color:white;
+}
+
+.sidebar-stay{
+    width: 200px; 
+    height:86vh;
+    overflow-x: hidden;
+    z-index:10;
+}
+
+.modal-bg{
+    position:relative;
+    left: 0vh;
+    background-color: transparent !important;
+}
+
+.grid-custom {
+    grid-template-rows: 5vh 15vh auto;
+}
+
+.card-characters {
+    height: 266.16px;
+    width: 197.16px;
+}
+
+/*esto de momento*/
+.bg-card {
+    background-color: transparent;
+}
+

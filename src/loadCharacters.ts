@@ -38,15 +38,15 @@ export async function loadCharacters() {
         const characterAll = responses.reduce((acc, response) => [...acc, ...response.results], [])
 
         characterAll.forEach((element: {id: number, image:string, name:string, gender: string, status:string, species:string}) => {
+
+
             const postBox = document.createElement("div")
-            postBox.setAttribute("class", "col")
             postBox.setAttribute("class", "col")
             boxPost.appendChild(postBox)
 
             const postCard = document.createElement("div")
-            postCard.setAttribute("class", "card shadow-sm")
-            postCard.setAttribute("width", "230")
-            postCard.setAttribute("height", "275")
+            postCard.setAttribute("class", "card shadow-sm card-characters")
+            postCard.setAttribute("height", "100%")
             postBox.appendChild(postCard)
 
             const postBody = document.createElement("div")
@@ -54,26 +54,21 @@ export async function loadCharacters() {
             postCard.appendChild(postBody)
 
             const divPic = document.createElement("div")
-            divPic.setAttribute("class", "col-auto d-lg-block d-flex")
+            divPic.setAttribute("class", "col-auto d-lg-block")
             postBody.appendChild(divPic)
 
             const pictureInside = document.createElement("img")
-            pictureInside.setAttribute("class", "bd-placeholder-img justify-content-center")
-            pictureInside.setAttribute("width", "100%")
-            pictureInside.setAttribute("height", "100%")
-            pictureInside.setAttribute("aria-label", "Placeholder: Thumbnail")
-            pictureInside.setAttribute("preserveAspectRatio", "xMidYMid slice")
-            pictureInside.setAttribute("focusable", "false")
+            pictureInside.setAttribute("class", "img-fluid rounded justify-content-center")
             pictureInside.src = element["image"]
             divPic.appendChild(pictureInside)
 
             const postTitle = document.createElement("p")
-            postTitle.setAttribute("class", "card-text")
+            postTitle.setAttribute("class", "card-text text-truncate")
             postTitle.textContent = element["name"]
             postBody.appendChild(postTitle)
 
             const postPlacingBtn = document.createElement("div")
-            postPlacingBtn.setAttribute("class", "d-flex justify-content-between align-items-center")
+            postPlacingBtn.setAttribute("class", "d-flex justify-content-end")
             postBody.appendChild(postPlacingBtn)
 
             const postGroupBtn = document.createElement("div")
