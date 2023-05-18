@@ -12,7 +12,6 @@ const url = "https://rickandmortyapi.com/api/";
 const urlLocations = `${url}location`;
 const sideList = document.querySelector("#side-list");
 const boxPost = document.querySelector("#box-post");
-const showBody = document.querySelector("#show-body");
 export function fetchLocationData(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

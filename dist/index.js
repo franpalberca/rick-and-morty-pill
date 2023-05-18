@@ -4,7 +4,6 @@ import { loadLocations } from './loadLocations.js';
 import { removeSidelist } from './loadEpisodes.js';
 const url = "https://rickandmortyapi.com/api/";
 const characterButton = document.querySelector("#characters");
-const showBody = document.querySelector("#show-body");
 const homePage = document.querySelector("#home-page");
 const seasonOne = document.querySelector("#season-one");
 const seasonTwo = document.querySelector("#season-two");

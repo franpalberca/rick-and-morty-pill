@@ -31,7 +31,7 @@ body {
 
 .main-container .footer-container {
     width: 100vh;
-    z-index: 10
+    /* z-index: 10 */
 }
 
 .overlay {
@@ -70,6 +70,11 @@ body {
 
 .modal-card {
     z-index: 110;
+    position: fixed;
+    left: 38%;
+    height: 80vh;
+    width: 50vh;
+    overflow-y: auto
 }
 
 .close-button {
@@ -93,7 +98,6 @@ body {
     width: 200px; 
     height:86vh;
     overflow-y: auto;
-    z-index:10;
 }
 
 .box-post {

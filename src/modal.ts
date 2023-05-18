@@ -1,5 +1,6 @@
 import { loadCharacters } from "./loadCharacters.js";
 import { loadLocations } from "./loadLocations.js";
+import { Character } from "./java_files/characters/characters.js";
 
 const modalWhole = document.querySelector("#modal-whole") as HTMLElement;
 const overlay = document.querySelector("#overlay") as HTMLElement;
@@ -95,8 +96,20 @@ export async function buildModal(id: number) {
 
     const modalListFourthElement = document.createElement("li")
     modalListFourthElement.setAttribute("class", "mb-0")
-    modalListFourthElement.innerText = "Specie: " + data.location.name
+    modalListFourthElement.innerText = "Location: " + data.location.name
     modalList.appendChild(modalListFourthElement)
+
+    // const episodes: Character[] = data.episode;
+    const episodeNames = await Promise.all(data.episode.map(async (episodeUrl: string) => {
+        const response = await fetch(episodeUrl);
+        const episodeData = await response.json();
+        return episodeData.name;
+    }));
+
+    const modalListFifthElement = document.createElement("li");
+    modalListFifthElement.setAttribute("class", "mb-0");
+    modalListFifthElement.innerText = "Episodes: " + episodeNames.join(", ");
+    modalList.appendChild(modalListFifthElement);
 
     const modalButton = document.createElement("button")
     modalButton.setAttribute("type", "button")

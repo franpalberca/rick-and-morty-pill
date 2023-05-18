@@ -91,8 +91,17 @@ export function buildModal(id) {
         modalList.appendChild(modalListThirdElement);
         const modalListFourthElement = document.createElement("li");
         modalListFourthElement.setAttribute("class", "mb-0");
-        modalListFourthElement.innerText = "Specie: " + data.location.name;
+        modalListFourthElement.innerText = "Location: " + data.location.name;
         modalList.appendChild(modalListFourthElement);
+        const episodeNames = yield Promise.all(data.episode.map((episodeUrl) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield fetch(episodeUrl);
+            const episodeData = yield response.json();
+            return episodeData.name;
+        })));
+        const modalListFifthElement = document.createElement("li");
+        modalListFifthElement.setAttribute("class", "mb-0");
+        modalListFifthElement.innerText = "Episodes: " + episodeNames.join(", ");
+        modalList.appendChild(modalListFifthElement);
         const modalButton = document.createElement("button");
         modalButton.setAttribute("type", "button");
         modalButton.setAttribute("class", "btn btn-lg btn-primary mt-5 w-100");

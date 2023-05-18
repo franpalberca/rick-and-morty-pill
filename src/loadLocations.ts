@@ -5,7 +5,6 @@ const url: string = "https://rickandmortyapi.com/api/"
 const urlLocations: string = `${url}location`
 const sideList = document.querySelector("#side-list") as HTMLElement;
 const boxPost = document.querySelector("#box-post") as HTMLElement
-const showBody = document.querySelector("#show-body")
 
 export async function fetchLocationData(id: string): Promise<Location>{
     try {
@@ -30,89 +29,85 @@ export function loadLocations(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
         try {
             sideList.innerText = '';
-    
-// export async function loadLocations() {
-    
+            for (let i = 1; i <= 126; i++) {
+                const location = await fetchLocationData(`${i}`);
 
-    for (let i = 1; i <= 126; i++) {
-        // try {
-            const location = await fetchLocationData(`${i}`);
+                const listLocations = document.createElement("li");
+                listLocations.setAttribute("class", "episode pointer");
+                listLocations.innerText = location.name;
+                sideList?.appendChild(listLocations);
 
-            const listLocations = document.createElement("li");
-            listLocations.setAttribute("class", "episode pointer");
-            listLocations.innerText = location.name;
-            sideList?.appendChild(listLocations);
+                listLocations.addEventListener("click", async () => {
 
-            listLocations.addEventListener("click", async () => {
+                    clearBoard()
+                    boxPost.classList.remove("row-cols-md-4")
+                    boxPost.classList.add("row-cols-md-1")
+                    const locationBox = document.createElement("div");
+                    locationBox.setAttribute("class", "col");
+                    boxPost.appendChild(locationBox);
 
-                clearBoard()
-                boxPost.classList.remove("row-cols-md-4")
-                boxPost.classList.add("row-cols-md-1")
-                const locationBox = document.createElement("div");
-                locationBox.setAttribute("class", "col");
-                boxPost.appendChild(locationBox);
+                    const locationCard = document.createElement("div");
+                    locationCard.setAttribute("class", "card shadow-sm card-location bg-card");
+                    locationBox.appendChild(locationCard);
 
-                const locationCard = document.createElement("div");
-                locationCard.setAttribute("class", "card shadow-sm card-location bg-card");
-                locationBox.appendChild(locationCard);
+                    const locationBody = document.createElement("div");
+                    locationBody.setAttribute("class", "card-body d-grid grid-custom");
+                    locationCard.appendChild(locationBody);
 
-                const locationBody = document.createElement("div");
-                locationBody.setAttribute("class", "card-body d-grid grid-custom");
-                locationCard.appendChild(locationBody);
+                    const locationTitle = document.createElement("h3");
+                    locationTitle.setAttribute("class", "card-text row-1");
+                    locationTitle.textContent = location.name;
+                    locationBody.appendChild(locationTitle);
 
-                const locationTitle = document.createElement("h3");
-                locationTitle.setAttribute("class", "card-text row-1");
-                locationTitle.textContent = location.name;
-                locationBody.appendChild(locationTitle);
+                    const locationUl = document.createElement("ul");
+                    locationUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small row-2");
+                    locationBody.appendChild(locationUl);
 
-                const locationUl = document.createElement("ul");
-                locationUl.setAttribute("class", "d-grid gap-4 my-5 list-unstyled small row-2");
-                locationBody.appendChild(locationUl);
+                    const locationLiOne = document.createElement("li");
+                    locationLiOne.setAttribute("class", "mb-0");
+                    locationLiOne.innerText = "Type: " + location.type;
+                    locationUl.appendChild(locationLiOne);
 
-                const locationLiOne = document.createElement("li");
-                locationLiOne.setAttribute("class", "mb-0");
-                locationLiOne.innerText = "Type: " + location.type;
-                locationUl.appendChild(locationLiOne);
+                    const locationLiTwo = document.createElement("li");
+                    locationLiTwo.setAttribute("class", "mb-0");
+                    locationLiTwo.innerText = "Dimension: " + location.dimension;
+                    locationUl.appendChild(locationLiTwo);
 
-                const locationLiTwo = document.createElement("li");
-                locationLiTwo.setAttribute("class", "mb-0");
-                locationLiTwo.innerText = "Dimension: " + location.dimension;
-                locationUl.appendChild(locationLiTwo);
+                    const locationLiThree = document.createElement("h5");
+                    locationLiThree.setAttribute("class", "mb-0");
+                    locationLiThree.appendChild(document.createTextNode("RESIDENTS: "));
+                    locationUl.appendChild(locationLiThree);
 
-                const locationLiThree = document.createElement("h5");
-                locationLiThree.setAttribute("class", "mb-0");
-                locationLiThree.appendChild(document.createTextNode("RESIDENTS: "));
-                locationUl.appendChild(locationLiThree);
+                    const residentBox = document.createElement("div")
+                    residentBox.setAttribute("class", "row row-cols-4 gap-5 my-5 justify-content-center")
+                    locationBody.appendChild(residentBox)
 
-                const residentBox = document.createElement("div")
-                residentBox.setAttribute("class", "row row-cols-4 gap-5 my-5 justify-content-center")
-                locationBody.appendChild(residentBox)
+                    const residentsList = await Promise.all(location.residents.map(async (urlResident) => {
+                        const response = await fetch(urlResident);
+                        const data = await response.json();
+                        return data;
+                        }));
+                        residentsList.forEach((resident) => {
 
-                const residentsList = await Promise.all(location.residents.map(async (urlResident) => {
-                    const response = await fetch(urlResident);
-                    const data = await response.json();
-                    return data;
-                    }));
-                    residentsList.forEach((resident) => {
+                            const residentDiv = document.createElement("div");
+                            residentDiv.setAttribute("class", "col mb-4");
+                            residentBox.appendChild(residentDiv);
 
-                        const residentDiv = document.createElement("div");
-                        residentDiv.setAttribute("class", "col mb-4");
-                        residentBox.appendChild(residentDiv);
+                            const residentImg = document.createElement("img");
+                            residentImg.setAttribute("class", "img-fluid rounded");
+                            residentImg.src = resident.image;
+                            residentImg.setAttribute("alt", `${'Picture of '}${resident.name}`)
+                            residentDiv.appendChild(residentImg);
 
-                        const residentImg = document.createElement("img");
-                        residentImg.setAttribute("class", "img-fluid rounded");
-                        residentImg.src = resident.image;
-                        residentImg.setAttribute("alt", `${'Picture of '}${resident.name}`)
-                        residentDiv.appendChild(residentImg);
-
-                        const residentName = document.createElement("h5");
-                        residentName.innerText = resident.name;
-                        residentDiv.appendChild(residentName);
-            }
-        }) 
-    }       resolve();
-            } catch (error) {
+                            const residentName = document.createElement("h5");
+                            residentName.innerText = resident.name;
+                            residentDiv.appendChild(residentName);
+                            })
+                        })
+                    }
+                    resolve();
+                } catch (error) {
                 reject(error);
-            }
-    })
-}
+                    }
+        })
+    }

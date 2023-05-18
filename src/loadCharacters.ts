@@ -1,6 +1,5 @@
 import { buildModal } from './modal.js'
 import { Character } from './java_files/characters/characters.js'
-import { clearBoard } from './loadEpisodes.js'
 
 const modalWhole = document.querySelector("#modal-whole") as HTMLElement
 const overlay = document.querySelector("#overlay") as HTMLElement

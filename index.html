@@ -12,65 +12,66 @@
     <title>Rick and Morty Site</title>
 </head>
 <body>
-    <header>
+<header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">RICK & MORTY'S API BLOG</a>
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" id="home-page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" id="characters" href="">Characters</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" id="location-button" href="">Locations</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="true">Seasons</a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" id="season-one" href="#">Season 1</a></li>
-                    <li><a class="dropdown-item" id="season-two" href="#">Season 2</a></li>
-                    <li><a class="dropdown-item" id="season-three" href="#">Season 3</a></li>
-                    <li><a class="dropdown-item" id="season-four" href="#">Season 4</a></li>
-                    <li><a class="dropdown-item" id="season-five" href="#">Season 5</a></li>
-                    </ul>
-                </li>
-            </ul>
-            </div>
-        </nav>
-    </header>
-    <main class="sidebar main-container d-flex flex-grow-1">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar-stay">
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li id="side-list">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" id="home-page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="true">Seasons</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="season-one" href="#">Season 1</a></li>
+                            <li><a class="dropdown-item" id="season-two" href="#">Season 2</a></li>
+                            <li><a class="dropdown-item" id="season-three" href="#">Season 3</a></li>
+                            <li><a class="dropdown-item" id="season-four" href="#">Season 4</a></li>
+                            <li><a class="dropdown-item" id="season-five" href="#">Season 5</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" id="location-button" href="">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" id="characters" href="">Characters</a>
                     </li>
                 </ul>
-            </div>
-        </section>
-        <section class="d-flex flex-grow-1">
-            <div class="overlay" id="overlay"></div>
-            <div class="bg-image background-custom">
-                <div id="modal-whole" class="modal-bg"></div>
-                <div class="album bg-body-terciary d-flex cards">
-                    <div id="show-body" class="container box-container justify-content-end">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3 box-post" id="box-post">
-                        </div>
+        </div>
+    </nav>
+</header>
+<main class="sidebar main-container d-flex flex-grow-1">
+    <section>
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar-stay">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li id="side-list">
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="d-flex flex-grow-1">
+        <div class="overlay" id="overlay"></div>
+        <div class="bg-image background-custom">
+            <div id="modal-whole" class="modal-bg"></div>
+            <div class="album bg-body-terciary d-flex cards">
+                <div id="show-body" class="container box-container justify-content-end">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3 box-post" id="box-post">
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-        <footer class="footer-container d-flex flex-wrap justify-content-between align-items-center py-3 border-top bg-dark border-top-0">
-            <div class="container"></div>
-                <p class="col-md-4 mb-0 text-body-primary">© Fran Pérez Alberca</p>
-                <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis">
-                    <div id="date" class="bi me-2 date-footer" width="40" height="32"></div>
-                </a>
-                <ul class="footer-container nav col-md-4 justify-content-end ">
-                    <li class="nav-item"><a href="https://github.com/franpalberca" target="_blank" class="nav-link col-md-4 mb-0 px-2 text-body-primary git-pic"></a></li>
-                </ul>
-            </div>
-        </footer>
+        </div>
+    </section>
+</main>
+<footer class="footer-container d-flex flex-wrap justify-content-between align-items-center py-3 border-top bg-dark border-top-0">
+    <div class="container"></div>
+        <p class="col-md-4 mb-0 text-body-primary">© Fran Pérez Alberca</p>
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis">
+            <div id="date" class="bi me-2 date-footer" width="40" height="32"></div>
+        </a>
+        <ul class="footer-container nav col-md-4 justify-content-end ">
+            <li class="nav-item"><a href="https://github.com/franpalberca" target="_blank" class="nav-link col-md-4 mb-0 px-2 text-body-primary git-pic"></a></li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>
