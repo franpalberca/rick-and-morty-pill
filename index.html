@@ -15,17 +15,16 @@
     <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand">RICK & MORTY</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarsExample03">
+            <a class="navbar-brand">RICK & MORTY'S API BLOG</a>
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" id="home-page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" id="characters" href="">Characters</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" id="location-button" href="">Locations</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="true">Seasons</a>
@@ -37,16 +36,12 @@
                     <li><a class="dropdown-item" id="season-five" href="#">Season 5</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" id="location-button" href="">Locations</a>
-                </li>
             </ul>
-            </div>
             </div>
         </nav>
     </header>
     <main class="sidebar main-container d-flex flex-grow-1">
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark overflow-y-scroll sidebar-stay">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar-stay">
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li id="side-list">
                     </li>
@@ -59,7 +54,7 @@
                 <div id="modal-whole" class="modal-bg"></div>
                 <div class="album bg-body-terciary d-flex cards">
                     <div id="show-body" class="container box-container justify-content-end">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3 overflow-y-scroll" id="box-post">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3 box-post" id="box-post">
                         </div>
                     </div>
                 </div>
@@ -73,11 +68,7 @@
                     <div id="date" class="bi me-2 date-footer" width="40" height="32"></div>
                 </a>
                 <ul class="footer-container nav col-md-4 justify-content-end ">
-                    <li class="nav-item"><a href="https://github.com/franpalberca" class="nav-link col-md-4 mb-0 px-2 text-body-primary">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">Features</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">Pricing</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">FAQs</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-primary">About</a></li>
+                    <li class="nav-item"><a href="https://github.com/franpalberca" target="_blank" class="nav-link col-md-4 mb-0 px-2 text-body-primary git-pic"></a></li>
                 </ul>
             </div>
         </footer>

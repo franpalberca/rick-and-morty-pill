@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { loadCharacters } from "./loadCharacters.js";
 const modalWhole = document.querySelector("#modal-whole");
 const overlay = document.querySelector("#overlay");
 const url = "https://rickandmortyapi.com/api/";
@@ -14,10 +15,18 @@ const urlCharacters = `${url}/character`;
 export function closeModal() {
     modalWhole.style.display = "none";
     overlay.style.display = "none";
-    modalWhole.innerHTML = "";
+    overlay.classList.remove("show");
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) {
+        backdrop.remove();
+    }
+    loadCharacters();
 }
 export function buildModal(id) {
     return __awaiter(this, void 0, void 0, function* () {
+        while (modalWhole.firstChild) {
+            modalWhole.removeChild(modalWhole.firstChild);
+        }
         const urlCharacterId = `${urlCharacters}/${id}`;
         const response = yield fetch(`${urlCharacterId}`);
         const data = yield response.json();

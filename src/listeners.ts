@@ -2,6 +2,7 @@ import { loadCharacters } from './loadCharacters.js'
 import { loadEpisodes, clearBoard } from './loadEpisodes.js'
 import { loadLocations } from './loadLocations.js'
 import { removeSidelist } from './loadEpisodes.js'
+import { refreshPage } from './loadCharacters.js'
 
 const url: string = "https://rickandmortyapi.com/api/"
 
@@ -15,6 +16,8 @@ const seasonFour = document.querySelector("#season-four")
 const seasonFive = document.querySelector("#season-five")
 const locationButton = document.querySelector("#location-button")
 
+homePage?.addEventListener("click", refreshPage);
+
 characterButton?.addEventListener("click", (event) => {
     clearBoard();
     removeSidelist();
@@ -24,14 +27,11 @@ characterButton?.addEventListener("click", (event) => {
 
 //Here we adjust the date for the footer
 const date = document.querySelector("#date") as HTMLElement;
-
 let dateObj = new Date();
 let month = dateObj.getUTCMonth() + 1;
 let day = dateObj.getUTCDate();
 let year = dateObj.getUTCFullYear();
-
 let newDate = day + "/" + month + "/" + year;
-
 date.innerText = newDate
 
 //Seasons
@@ -71,8 +71,4 @@ locationButton?.addEventListener("click", (event) => {
     clearBoard()
     removeSidelist()
     loadLocations()
-})
-
-homePage?.addEventListener("click", () => {
-    location.reload()
 })

@@ -2,6 +2,7 @@ import { loadCharacters } from './loadCharacters.js';
 import { loadEpisodes, clearBoard } from './loadEpisodes.js';
 import { loadLocations } from './loadLocations.js';
 import { removeSidelist } from './loadEpisodes.js';
+import { refreshPage } from './loadCharacters.js';
 const url = "https://rickandmortyapi.com/api/";
 const characterButton = document.querySelector("#characters");
 const showBody = document.querySelector("#show-body");
@@ -12,6 +13,7 @@ const seasonThree = document.querySelector("#season-three");
 const seasonFour = document.querySelector("#season-four");
 const seasonFive = document.querySelector("#season-five");
 const locationButton = document.querySelector("#location-button");
+homePage === null || homePage === void 0 ? void 0 : homePage.addEventListener("click", refreshPage);
 characterButton === null || characterButton === void 0 ? void 0 : characterButton.addEventListener("click", (event) => {
     clearBoard();
     removeSidelist();
@@ -56,7 +58,4 @@ locationButton === null || locationButton === void 0 ? void 0 : locationButton.a
     removeSidelist();
     loadLocations();
 });
-homePage === null || homePage === void 0 ? void 0 : homePage.addEventListener("click", () => {
-    location.reload();
-});
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=listeners.js.map

@@ -1,15 +1,27 @@
+import { loadCharacters } from "./loadCharacters.js";
 const modalWhole = document.querySelector("#modal-whole") as HTMLElement;
 const overlay = document.querySelector("#overlay") as HTMLElement;
 const url: string = "https://rickandmortyapi.com/api/";
 const urlCharacters: string = `${url}/character`;
 
+
 export function closeModal() {
         modalWhole.style.display = "none";
         overlay.style.display = "none";
-        modalWhole.innerHTML = "";
+        overlay.classList.remove("show");
+        const backdrop = document.querySelector(".modal-backdrop");
+            if (backdrop) {
+            backdrop.remove();
+            }
+        loadCharacters()
     }
 
+
+
 export async function buildModal(id: number) {
+    while (modalWhole.firstChild) {
+        modalWhole.removeChild(modalWhole.firstChild)
+    }
     const urlCharacterId: string = `${urlCharacters}/${id}`;
     const response = await fetch(`${urlCharacterId}`);
     const data = await response.json();

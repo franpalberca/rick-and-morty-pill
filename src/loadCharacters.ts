@@ -43,8 +43,6 @@ export async function loadCharacters() {
             boxPost.classList.remove("row-cols-md-1")
             boxPost.classList.add("row-cols-md-4")
             const postBox = document.createElement("div")
-            postBox.classList.add("overflow-y-scroll")
-            postBox.setAttribute("class", "bg-white")
             boxPost.appendChild(postBox)
 
             const postBoxSingle = document.createElement("div")

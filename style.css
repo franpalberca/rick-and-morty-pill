@@ -92,14 +92,19 @@ body {
 .sidebar-stay{
     width: 200px; 
     height:86vh;
-    overflow-x: hidden;
+    overflow-y: auto;
     z-index:10;
+}
+
+.box-post {
+    overflow-y:auto;
 }
 
 .modal-bg{
     position:relative;
     left: 0vh;
     background-color: transparent;
+    z-index: 1055;
 }
 
 .grid-custom {
@@ -111,12 +116,21 @@ body {
     width: 197.16px;
 }
 
-/*esto de momento*/
-/* .bg-card {
-    background-color: transparent;
-} */
+.git-pic {
+    background-image: url("../images/picGithub.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
 
 .modal-bg{
     background-color: transparent;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
