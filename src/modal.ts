@@ -1,26 +1,33 @@
 import { loadCharacters } from "./loadCharacters.js";
+import { loadLocations } from "./loadLocations.js";
+
 const modalWhole = document.querySelector("#modal-whole") as HTMLElement;
 const overlay = document.querySelector("#overlay") as HTMLElement;
 const url: string = "https://rickandmortyapi.com/api/";
 const urlCharacters: string = `${url}/character`;
 
-
 export function closeModal() {
-        modalWhole.style.display = "none";
-        overlay.style.display = "none";
-        overlay.classList.remove("show");
-        const backdrop = document.querySelector(".modal-backdrop");
-            if (backdrop) {
-            backdrop.remove();
-            }
-        loadCharacters()
+    modalWhole.style.display = "none";
+    overlay.style.display = "none";
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) {
+        backdrop.remove();
     }
+    loadCharacters();
+}
 
-
+async function loadLocationsAsync() {
+    try {
+    await loadLocations();
+    buildModal(id)
+} catch (error) {
+    console.error(error)
+}
+}
 
 export async function buildModal(id: number) {
     while (modalWhole.firstChild) {
-        modalWhole.removeChild(modalWhole.firstChild)
+        modalWhole.removeChild(modalWhole.firstChild);
     }
     const urlCharacterId: string = `${urlCharacters}/${id}`;
     const response = await fetch(`${urlCharacterId}`);
@@ -59,6 +66,7 @@ export async function buildModal(id: number) {
     const modalPic = document.createElement("img");
     modalPic.setAttribute("class", "img-fluid rounded mx-auto my-3");
     modalPic.src = data.image;
+    modalPic.setAttribute("alt", `${'Picture of '}${data.name}`)
     modalPicDiv.appendChild(modalPic);
 
     const modalTitle = document.createElement("h2");
@@ -85,6 +93,11 @@ export async function buildModal(id: number) {
     modalListThirdElement.innerText = "Specie: " + data.species
     modalList.appendChild(modalListThirdElement)
 
+    const modalListFourthElement = document.createElement("li")
+    modalListFourthElement.setAttribute("class", "mb-0")
+    modalListFourthElement.innerText = "Specie: " + data.location.name
+    modalList.appendChild(modalListFourthElement)
+
     const modalButton = document.createElement("button")
     modalButton.setAttribute("type", "button")
     modalButton.setAttribute("class", "btn btn-lg btn-primary mt-5 w-100")
@@ -93,4 +106,3 @@ export async function buildModal(id: number) {
     modalBody.appendChild(modalButton)
     modalButton.addEventListener("click", closeModal)
     }
-

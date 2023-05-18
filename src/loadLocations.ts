@@ -26,11 +26,16 @@ export async function fetchLocationData(id: string): Promise<Location>{
     }
 }
 
-export async function loadLocations() {
-    sideList.innerText = '';
+export function loadLocations(): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+        try {
+            sideList.innerText = '';
+    
+// export async function loadLocations() {
+    
 
     for (let i = 1; i <= 126; i++) {
-        try {
+        // try {
             const location = await fetchLocationData(`${i}`);
 
             const listLocations = document.createElement("li");
@@ -97,16 +102,17 @@ export async function loadLocations() {
                         const residentImg = document.createElement("img");
                         residentImg.setAttribute("class", "img-fluid rounded");
                         residentImg.src = resident.image;
+                        residentImg.setAttribute("alt", `${'Picture of '}${resident.name}`)
                         residentDiv.appendChild(residentImg);
 
                         const residentName = document.createElement("h5");
                         residentName.innerText = resident.name;
                         residentDiv.appendChild(residentName);
-                    });
-                })
-            } catch (error) {
-                console.error(error);
             }
-    }
+        }) 
+    }       resolve();
+            } catch (error) {
+                reject(error);
+            }
+    })
 }
-

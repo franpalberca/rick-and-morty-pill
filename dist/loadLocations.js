@@ -34,10 +34,10 @@ export function fetchLocationData(id) {
     });
 }
 export function loadLocations() {
-    return __awaiter(this, void 0, void 0, function* () {
-        sideList.innerText = '';
-        for (let i = 1; i <= 126; i++) {
-            try {
+    return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+        try {
+            sideList.innerText = '';
+            for (let i = 1; i <= 126; i++) {
                 const location = yield fetchLocationData(`${i}`);
                 const listLocations = document.createElement("li");
                 listLocations.setAttribute("class", "episode pointer");
@@ -90,6 +90,7 @@ export function loadLocations() {
                         const residentImg = document.createElement("img");
                         residentImg.setAttribute("class", "img-fluid rounded");
                         residentImg.src = resident.image;
+                        residentImg.setAttribute("alt", `${'Picture of '}${resident.name}`);
                         residentDiv.appendChild(residentImg);
                         const residentName = document.createElement("h5");
                         residentName.innerText = resident.name;
@@ -97,10 +98,11 @@ export function loadLocations() {
                     });
                 }));
             }
-            catch (error) {
-                console.error(error);
-            }
+            resolve();
         }
-    });
+        catch (error) {
+            reject(error);
+        }
+    }));
 }
 //# sourceMappingURL=loadLocations.js.map
